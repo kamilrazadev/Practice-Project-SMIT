@@ -11,7 +11,11 @@
 <body>
     <div class="p-3 d-flex justify-content-between align-items-center">
         <h1>Welcome, <span id="username-span" class="text-primary fw-bolder"></span> </h1>
-        <button class="btn btn-outline-danger" onclick="logoutHandler()">Logout</button>
+        <div class="d-flex gap-2">
+            <button class="btn btn-outline-danger" onclick="logoutHandler()">Logout</button>
+            <a href="../userAuthentication/forgot-password" class="btn btn-outline-info">Reset Password</a>
+        </div>
+
     </div>
     <script src="./home.js"></script>
 </body>

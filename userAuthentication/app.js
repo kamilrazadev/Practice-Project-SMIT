@@ -131,3 +131,52 @@ function loginHandler() {
 
   window.location.href = "../../homepage";
 }
+
+const isUserExists = localStorage.getItem("LoggedInUser") || false;
+
+if (isUserExists) {
+  const currentUser = JSON.parse(isUserExists);
+  email.value = currentUser.email;
+}
+
+const resetPasswordHandler = () => {
+  if (email.value == "" || pass.value == "") {
+    errorMessage.innerText = "All Fields are Required";
+    setTimeout(() => {
+      errorMessage.innerText = "";
+    }, 1500);
+    return;
+  }
+
+  if (pass.value.length < 7) {
+    errorMessage.innerText = "Password must be 8 characters long";
+    setTimeout(() => {
+      errorMessage.innerText = "";
+    }, 1500);
+    return;
+  }
+
+  let DatabaseUsers = JSON.parse(localStorage.getItem("users")) || [];
+
+  const checkUser = DatabaseUsers.find((user) => {
+    if (user.email == email.value) return user;
+  });
+
+  if (!checkUser) {
+    errorMessage.innerText = "Account don't exists!";
+    setTimeout(() => {
+      errorMessage.innerText = "";
+    }, 1500);
+    return;
+  }
+
+  const updatedUsers = DatabaseUsers.map((user) => {
+    if (user.email == email.value) {
+      user.password = pass.value;
+    }
+    return user;
+  });
+
+  localStorage.setItem("users", JSON.stringify(updatedUsers));
+  alert("Password Updated Successfully");
+};

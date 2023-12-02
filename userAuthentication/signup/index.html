@@ -17,7 +17,7 @@
             <input class="form-control" id="email" type="email">
     
             <label for="password">Password:</label>
-            <input class="form-control" id="password" type="password">
+            <input class="form-control" id="password" type="password" oninput="matchPasswords()">
     
             <label for="cpassword" >Confirm Password:</label>
             <input class="form-control" id="cpassword" type="password" oninput="matchPasswords()">
@@ -28,7 +28,7 @@
         </div>
         <button class="btn btn-outline-primary" onclick="signupHandler()">Sign Up</button>
         <div>
-            <p>Already have an account? <a href="../login">Login</a></p>
+            <p>Already have an account? <a href="../login" class="text-decoration-none">Login</a></p>
         </div>
     </main>
 
