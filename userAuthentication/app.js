@@ -1,5 +1,6 @@
 const username = document.getElementById("username");
 const email = document.getElementById("email");
+const gender = document.getElementById("gender");
 const pass = document.getElementById("password");
 const cPass = document.getElementById("cpassword");
 const errorMessage = document.getElementById("error-message");
@@ -32,6 +33,7 @@ function signupHandler() {
   if (
     username.value == "" ||
     email.value == "" ||
+    gender.value == "" ||
     pass.value == "" ||
     cPass.value == ""
   ) {
@@ -76,6 +78,13 @@ function signupHandler() {
     username: toTitleCase(username.value),
     email: email.value,
     password: pass.value,
+    gender: gender.value,
+    profileImage:
+      gender.value == "female"
+        ? "https://cdn-icons-png.flaticon.com/512/4140/4140047.png"
+        : gender.value == "male"
+        ? "https://cdn-icons-png.flaticon.com/512/4140/4140037.png"
+        : "",
   };
 
   DatabaseUsers.push(user);
@@ -132,11 +141,20 @@ function loginHandler() {
   window.location.href = "../../homepage";
 }
 
+// ----------
 const isUserExists = localStorage.getItem("LoggedInUser") || false;
+const userProfile = document.getElementById("account-bar");
+const userProfileImage = document.getElementById("account-icon");
+const userName = document.getElementById("username");
+userProfile.style.display = "none";
 
 if (isUserExists) {
   const currentUser = JSON.parse(isUserExists);
   email.value = currentUser.email;
+
+  userProfile.style.display = "flex";
+  userProfileImage.src = currentUser.profileImage;
+  userName.innerText = currentUser.username;
 }
 
 const resetPasswordHandler = () => {
