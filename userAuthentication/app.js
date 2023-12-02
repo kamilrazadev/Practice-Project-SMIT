@@ -5,8 +5,6 @@ const cPass = document.getElementById("cpassword");
 const errorMessage = document.getElementById("error-message");
 const passwordError = document.getElementById("password-error");
 
-let DatabaseUsers = JSON.parse(localStorage.getItem("users")) || [];
-
 // to change user's name into title case
 const toTitleCase = (name) => {
   var words = name.split(" ");
@@ -24,7 +22,7 @@ const toTitleCase = (name) => {
 // to check password and confirm password
 const matchPasswords = () => {
   if (pass.value != cPass.value) {
-    passwordError.innerText = "Password and Confirm Password must be same";
+    passwordError.innerText = "Not Matching with Password";
   } else {
     passwordError.innerText = "";
   }
@@ -60,6 +58,8 @@ function signupHandler() {
     return;
   }
 
+  let DatabaseUsers = JSON.parse(localStorage.getItem("users")) || [];
+
   const checkUser = DatabaseUsers.find((user) => {
     if (user.email == email.value) return user;
   });
@@ -84,7 +84,7 @@ function signupHandler() {
 
   alert("Account Created Successfully!");
 
-  window.location.href = "/login/index.html";
+  window.location.href = "/userAuthentication/login/index.html";
 }
 
 function loginHandler() {
@@ -104,6 +104,8 @@ function loginHandler() {
     return;
   }
 
+  let DatabaseUsers = JSON.parse(localStorage.getItem("users")) || [];
+
   const checkUser = DatabaseUsers.find((user) => {
     if (user.email == email.value) return user;
   });
@@ -117,11 +119,15 @@ function loginHandler() {
   }
 
   if (checkUser.password != pass.value) {
-    return alert("Wrong Password");
+    errorMessage.innerText = "Wrong Password";
+    setTimeout(() => {
+      errorMessage.innerText = "";
+    }, 1500);
+    return;
   }
 
   localStorage.setItem("LoggedInUser", JSON.stringify(checkUser));
   alert("Login Successfully");
 
-  window.location.href = "/homepage/index.html";
+  window.location.href = "../../homepage";
 }
