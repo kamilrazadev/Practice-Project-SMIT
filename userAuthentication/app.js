@@ -3,11 +3,24 @@ const email = document.getElementById("email");
 const pass = document.getElementById("password");
 const cPass = document.getElementById("cpassword");
 
-let DatabaseUsers = [];
-DatabaseUsers = JSON.parse(localStorage.getItem("users"));
+console.log(
+  (document.getElementsByTagName("body")[0].style.backgroundColor = "black")
+);
 
-// user logged in or not
+let DatabaseUsers = JSON.parse(localStorage.getItem("users")) || [];
 
+const toTitleCase = (name) => {
+  var words = name.split(" ");
+
+  for (var i = 0; i < words.length; i++) {
+    words[i] =
+      words[i].charAt(0).toUpperCase() + words[i].substring(1).toLowerCase();
+  }
+
+  var titleCaseName = words.join(" ");
+
+  return titleCaseName;
+};
 
 function signupHandler() {
   if (
@@ -28,8 +41,7 @@ function signupHandler() {
   }
 
   const checkUser = DatabaseUsers.find((user) => {
-    if (user.email == email.value || user.username == username.value)
-      return user;
+    if (user.email == email.value) return user;
   });
 
   if (checkUser) {
@@ -37,7 +49,7 @@ function signupHandler() {
   }
 
   const user = {
-    username: username.value,
+    username: toTitleCase(username.value),
     email: email.value,
     password: pass.value,
   };
@@ -72,7 +84,7 @@ function loginHandler() {
     return alert("Wrong Password");
   }
 
-  localStorage.setItem("LoggedInUser", JSON.stringify(checkUser))
+  localStorage.setItem("LoggedInUser", JSON.stringify(checkUser));
   alert("Login Successfully");
 
   window.location.href = "/homepage/index.html";
