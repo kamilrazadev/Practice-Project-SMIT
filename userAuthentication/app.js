@@ -138,7 +138,7 @@ function loginHandler() {
   localStorage.setItem("LoggedInUser", JSON.stringify(checkUser));
   alert("Login Successfully");
 
-  window.location.href = "../../homepage";
+  window.location.href = "../../application";
 }
 
 // ----------

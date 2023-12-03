@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <title>Home Page</title>
+</head>
+<body class="bg-gray-100 relative">
+
+    <main>
+        <nav class=" max-h-[60px] p-3 flex justify-between items-center shadow-md bg-white">
+            <h3 class="text-2xl font-semibold">Welcome, <span id="username-span" class="text-blue-500"></span> </h3>
+    
+            <!-- Account Icon -->
+            <div class="h-full" onclick="showAccountDetails()">
+                <img src="" alt="Account" class="h-[35px] w-auto cursor-pointer" id="account-icon">
+                <div id="account-container" class="min-w-[200px] max-w-[90%] p-4 hidden flex-col items-start gap-2 absolute top-[102%] right-3 rounded-md text-sm text-gray-600 bg-white shadow-lg">
+                    <a href="/application" class="w-full p-2 flex items-center gap-3 border-b-2 cursor-pointer">
+                        <img src="" alt="Account" class="h-[35px] w-auto" id="account-icon-2">
+                        <h5 class="font-medium text-base" id="acc-username"></h5>
+                    </a>
+                    <div class="flex flex-col items-start gap-4 my-4">
+                        <a href="#" class="flex gap-3 items-center transition cursor-pointer hover:-translate-y-0.5">
+                            <img src="/assets/icons/settings-icon.png" alt="" class="w-[20px] h-auto">
+                            <p>Account Setting</p>
+                        </a>
+        
+                        <a href="/userAuthentication/forgot-password" class="flex gap-3 items-center transition cursor-pointer hover:-translate-y-0.5">
+                            <img src="/assets/icons/reset-password-icon.png" alt="" class="w-[20px] h-auto">
+                            <p class="">Reset Password</p>
+                        </a >
+                        <div onclick="logoutHandler()" class="flex gap-3 items-center transition cursor-pointer hover:-translate-y-0.5">
+                            <img src="/assets/icons/logout-icon.png" alt="" class="w-[17px] h-auto">
+                            <button class="" >Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Account setting -->
+        <section class="w-full min-h-[90vh] flex items-center justify-center">
+            <div class="flex flex-col gap-4 min-w-[350px] text-sm">
+                <div>
+                    <label for="username" class="mb-2">Full Name:</label>
+                    <input class="form-control" type="text" id="username">
+                </div>
+
+                <div>
+                    <label for="email" class="mb-2">Email:</label>
+                    <input class="form-control" type="email" id="email">
+                </div>
+
+                <div>
+                    <label for="profile-image" class="mb-2">Profile Image:</label>
+                    <input class="form-control" type="text" id="profile-image">
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <script src="/application/home.js"></script>
+</body>
+</html>
