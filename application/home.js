@@ -1,9 +1,15 @@
+// to get all database users
+
+const getAllUsers = () => {
+  
+}
+
 // to check user logged or not
 const isUserExists = localStorage.getItem("LoggedInUser") || false;
 
 // if not logged in redirected to login page
 if (!isUserExists) {
-  window.location.href = "../userAuthentication/login";
+  window.location.href = "/userAuthentication/login";
 }
 
 // setting user's name
@@ -45,4 +51,73 @@ const showAccountDetails = () => {
     accoutnDetails.classList.add("hidden");
     accoutnDetails.classList.remove("flex");
   }
+};
+
+// update account details
+
+const username = document.getElementById("username");
+const email = document.getElementById("email");
+const profileImageInputDiv = document.getElementById("profile-image-input");
+const profileImageInput = document.getElementById(
+  "profile-image-input"
+).firstElementChild;
+const profileImage = document.getElementById("profile-image");
+const updateImageBtn = document.getElementById("update-profile-btn");
+
+username.disabled = true;
+username.value = currentUser.username;
+email.disabled = true;
+email.value = currentUser.email;
+
+profileImage.src = currentUser.profileImage;
+profileImageInputDiv.style.display = "none";
+
+const showprofileImageInput = () => {
+  updateImageBtn.style.display = "none";
+  profileImageInputDiv.style.display = "flex";
+  profileImageInput.focus();
+};
+
+const closeProfileImageInput = () => {
+  updateImageBtn.style.display = "block";
+  profileImageInput.value = "";
+  profileImageInputDiv.style.display = "none";
+};
+
+const showUsernameInput = () => {
+  username.disabled = false;
+  username.nextElementSibling.style.display = "none";
+  username.focus();
+};
+
+const showEmailInput = () => {
+  email.disabled = false;
+  email.nextElementSibling.style.display = "none";
+  email.focus();
+};
+
+const updateAccountDetails = () => {
+  const errorMessage = document.getElementById("error-message");
+
+  if (username.value == "" || email.value == "") {
+    errorMessage.innerText = "All Fields must not be empty";
+    setTimeout(() => {
+      errorMessage.innerText = "";
+    }, 1500);
+    return;
+  }
+
+  const updatedUser = {
+    email: email.value,
+    gender: currentUser.gender,
+    password: currentUser.password,
+    username: username.value,
+    profileImage: profileImageInput.value
+      ? profileImageInput.value
+      : currentUser.profileImage,
+  };
+
+  da
+
+  console.log(updatedUser);
 };

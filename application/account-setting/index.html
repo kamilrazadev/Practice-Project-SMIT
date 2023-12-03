@@ -45,19 +45,36 @@
         <!-- Account setting -->
         <section class="w-full min-h-[90vh] flex items-center justify-center">
             <div class="flex flex-col gap-4 min-w-[350px] text-sm">
+                <div class="w-full flex flex-col items-center justify-center gap-3">
+                    <img src="" alt="Profile Image" id="profile-image" class="w-[150px]">
+                    <button id="update-profile-btn" class="p-2 border-2 rounded transition active:bg-gray-200 hover:shadow-md" onclick="showprofileImageInput()">Update Profile Image</button>
+                </div>
+                <div>
+                    <div class="gap-2" id="profile-image-input">
+                        <input class="form-control" type="text" placeholder="add an image link">
+                        <button class="btn btn-info text-white" onclick="closeProfileImageInput()">Close</button>
+                    </div>
+                </div>
                 <div>
                     <label for="username" class="mb-2">Full Name:</label>
-                    <input class="form-control" type="text" id="username">
+                    <div class="flex gap-2">
+                        <input class="form-control" type="text" id="username">
+                        <button class="btn btn-info text-white" onclick="showUsernameInput()">Edit</button>
+                    </div>
                 </div>
 
                 <div>
                     <label for="email" class="mb-2">Email:</label>
-                    <input class="form-control" type="email" id="email">
+                    <div class="flex gap-2">
+                        <input class="form-control" type="email" id="email">
+                        <button class="btn btn-info text-white" onclick="showEmailInput()">Edit</button>
+                    </div>
                 </div>
-
-                <div>
-                    <label for="profile-image" class="mb-2">Profile Image:</label>
-                    <input class="form-control" type="text" id="profile-image">
+                <div class="text-center">
+                    <p class="text-danger" id="error-message"></p>
+                </div>  
+                <div class="flex justify-center">
+                    <button class="btn btn-outline-primary" onclick="updateAccountDetails()">Update Details</button>
                 </div>
             </div>
         </section>

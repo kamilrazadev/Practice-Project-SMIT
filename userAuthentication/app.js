@@ -82,9 +82,7 @@ function signupHandler() {
     profileImage:
       gender.value == "female"
         ? "https://cdn-icons-png.flaticon.com/512/4140/4140047.png"
-        : gender.value == "male"
-        ? "https://cdn-icons-png.flaticon.com/512/4140/4140037.png"
-        : "",
+        : "https://cdn-icons-png.flaticon.com/512/4140/4140037.png",
   };
 
   DatabaseUsers.push(user);
