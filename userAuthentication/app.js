@@ -30,6 +30,11 @@ const matchPasswords = () => {
 };
 
 function signupHandler() {
+  const username = document.getElementById("username");
+  const email = document.getElementById("email");
+  const gender = document.getElementById("gender");
+  const pass = document.getElementById("password");
+  const cPass = document.getElementById("cpassword");
   if (
     username.value == "" ||
     email.value == "" ||
@@ -95,6 +100,9 @@ function signupHandler() {
 }
 
 function loginHandler() {
+  const email = document.getElementById("email");
+  const pass = document.getElementById("password");
+
   if (email.value == "" || pass.value == "") {
     errorMessage.innerText = "All Fields are Required";
     setTimeout(() => {
