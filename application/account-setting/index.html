@@ -9,10 +9,10 @@
 
     <title>Home Page</title>
 </head>
-<body class="bg-gray-100 relative">
+<body class="bg-gray-100">
 
     <main>
-        <nav class=" max-h-[60px] p-3 flex justify-between items-center shadow-md bg-white">
+        <nav class="relative max-h-[60px] p-3 flex justify-between items-center shadow-md bg-white">
             <h3 class="text-2xl font-semibold">Welcome, <span id="username-span" class="text-blue-500"></span> </h3>
     
             <!-- Account Icon -->
@@ -65,9 +65,8 @@
 
                 <div>
                     <label for="email" class="mb-2">Email:</label>
-                    <div class="flex gap-2">
-                        <input class="form-control" type="email" id="email">
-                        <button class="btn btn-info text-white" onclick="showEmailInput()">Edit</button>
+                    <div class="flex">
+                        <input class="form-control" type="email" id="email" disabled>
                     </div>
                 </div>
                 <div class="text-center">
@@ -81,6 +80,7 @@
 
     </main>
     
+    <script src="./account-setting.js"></script>
     <script src="/application/home.js"></script>
 </body>
 </html>

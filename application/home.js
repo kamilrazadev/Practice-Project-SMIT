@@ -1,8 +1,9 @@
 // to get all database users
 
 const getAllUsers = () => {
-  
-}
+  let allUsers = JSON.parse(localStorage.getItem("users"));
+  return allUsers;
+};
 
 // to check user logged or not
 const isUserExists = localStorage.getItem("LoggedInUser") || false;
@@ -54,7 +55,6 @@ const showAccountDetails = () => {
 };
 
 // update account details
-
 const username = document.getElementById("username");
 const email = document.getElementById("email");
 const profileImageInputDiv = document.getElementById("profile-image-input");
@@ -66,7 +66,6 @@ const updateImageBtn = document.getElementById("update-profile-btn");
 
 username.disabled = true;
 username.value = currentUser.username;
-email.disabled = true;
 email.value = currentUser.email;
 
 profileImage.src = currentUser.profileImage;
@@ -90,17 +89,19 @@ const showUsernameInput = () => {
   username.focus();
 };
 
-const showEmailInput = () => {
-  email.disabled = false;
-  email.nextElementSibling.style.display = "none";
-  email.focus();
-};
-
 const updateAccountDetails = () => {
   const errorMessage = document.getElementById("error-message");
 
-  if (username.value == "" || email.value == "") {
-    errorMessage.innerText = "All Fields must not be empty";
+  if (username.value == "") {
+    errorMessage.innerText = "Your Name is Required";
+    setTimeout(() => {
+      errorMessage.innerText = "";
+    }, 1500);
+    return;
+  }
+
+  if (username.value == currentUser.username && profileImageInput.value == "") {
+    errorMessage.innerText = "Nothing to Update";
     setTimeout(() => {
       errorMessage.innerText = "";
     }, 1500);
@@ -117,7 +118,23 @@ const updateAccountDetails = () => {
       : currentUser.profileImage,
   };
 
-  da
+  const allUsers = getAllUsers();
 
-  console.log(updatedUser);
+  const userToUpdate = allUsers.find((user) => {
+    if (user.email == email.value) return user;
+  });
+
+  userToUpdate.email = email.value;
+  userToUpdate.username = username.value;
+  userToUpdate.profileImage = profileImageInput.value
+    ? profileImageInput.value
+    : currentUser.profileImage;
+
+  localStorage.setItem("LoggedInUser", JSON.stringify(userToUpdate));
+
+  localStorage.setItem("users", JSON.stringify(allUsers));
+
+  alert("Details updated successfully");
+
+  window.location.href = "/application";
 };

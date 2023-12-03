@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style.css">
+    <!-- tailwind cdn -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- fontawesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Home Page</title>
 </head>
-<body class="bg-gray-100 relative">
-    <nav class=" max-h-[60px] p-3 flex justify-between items-center shadow-md bg-white">
+<body class="bg-gray-100 min-h-[100vh]">
+<main>
+    <nav class="relative max-h-[60px] p-3 flex justify-between items-center shadow-md bg-white">
         <h3 class="text-2xl font-semibold">Welcome, <span id="username-span" class="text-blue-500"></span> </h3>
 
         <!-- Account Icon -->
@@ -37,6 +41,79 @@
             </div>
         </div>
     </nav>
+
+    <!-- content -->
+    <section class="grid grid-cols-3">
+        <section class="col-span-1">post something</section>
+        <section class="col-span-2 flex flex-col items-center">
+            <!-- single post -->
+            <div class="p-5 max-w-[600px]">
+                <div class="p-5 !w-fit rounded-lg shadow-md bg-white">
+                    <div class="flex gap-3 mb-2">
+                        <div
+                            style="background-image: url(https://images.adsttc.com/media/images/5d44/14fa/284d/d1fd/3a00/003d/large_jpg/eiffel-tower-in-paris-151-medium.jpg?1564742900);"
+                            class="w-[40px] h-[40px] rounded-full bg-cover bg-center">
+                        </div>
+
+                        <div>
+                            <p class="font-semibold">M Kamil Raza</p>
+                            <p class="text-gray-600 text-[12px]">3-10-2023 - 2:00pm</p>
+                        </div>
+                    </div>
+                    <p class="my-2">post description</p>
+                    <img class="w-full h-auto " src="https://images.adsttc.com/media/images/5d44/14fa/284d/d1fd/3a00/003d/large_jpg/eiffel-tower-in-paris-151-medium.jpg?1564742900" alt="post image">
+                    <div class="flex justify-between mt-5 px-10 text-xl text-gray-600">
+                        <div class="flex items-center gap-2 cursor-pointer">
+                            <i class="far fa-thumbs-up"></i>
+                            <p class="text-base">Like</p>
+                        </div>
+                        <div class="flex items-center gap-2 cursor-pointer">
+                            <i class="far fa-comment-dots"></i>
+                            <p class="text-sm">Comment</p>
+                        </div>
+                        <div class="flex items-center gap-2 cursor-pointer">
+                            <i class="fas fa-share"></i>
+                            <p class="text-base">Share</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-5 max-w-[600px]">
+                <div class="p-5 !w-fit rounded-lg shadow-md bg-white">
+                    <div class="flex gap-3 mb-2">
+                        <div
+                            style="background-image: url(https://images.adsttc.com/media/images/5d44/14fa/284d/d1fd/3a00/003d/large_jpg/eiffel-tower-in-paris-151-medium.jpg?1564742900);"
+                            class="w-[40px] h-[40px] rounded-full bg-cover bg-center">
+                        </div>
+
+                        <div>
+                            <p class="font-semibold">M Kamil Raza</p>
+                            <p class="text-gray-600 text-[12px]">3-10-2023 - 2:00pm</p>
+                        </div>
+                    </div>
+                    <p class="my-2">post description</p>
+                    <img class="w-full h-auto " src="https://images.adsttc.com/media/images/5d44/14fa/284d/d1fd/3a00/003d/large_jpg/eiffel-tower-in-paris-151-medium.jpg?1564742900" alt="post image">
+                    <div class="flex justify-between mt-5 px-10 text-xl text-gray-600">
+                        <div class="flex items-center gap-2 cursor-pointer">
+                            <i class="far fa-thumbs-up"></i>
+                            <p class="text-base">Like</p>
+                        </div>
+                        <div class="flex items-center gap-2 cursor-pointer">
+                            <i class="far fa-comment-dots"></i>
+                            <p class="text-sm">Comment</p>
+                        </div>
+                        <div class="flex items-center gap-2 cursor-pointer">
+                            <i class="fas fa-share"></i>
+                            <p class="text-base">Share</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </section>
+
+</main>
     <script src="./home.js"></script>
 </body>
 </html>
