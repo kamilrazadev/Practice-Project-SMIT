@@ -1,10 +1,3 @@
-// to get all database users
-
-const getAllUsers = () => {
-  let allUsers = JSON.parse(localStorage.getItem("users"));
-  return allUsers;
-};
-
 // to check user logged or not
 const isUserExists = localStorage.getItem("LoggedInUser") || false;
 
@@ -54,87 +47,54 @@ const showAccountDetails = () => {
   }
 };
 
-// update account details
-const username = document.getElementById("username");
-const email = document.getElementById("email");
-const profileImageInputDiv = document.getElementById("profile-image-input");
-const profileImageInput = document.getElementById(
-  "profile-image-input"
-).firstElementChild;
-const profileImage = document.getElementById("profile-image");
-const updateImageBtn = document.getElementById("update-profile-btn");
+// setting posts
 
-username.disabled = true;
-username.value = currentUser.username;
-email.value = currentUser.email;
+const setAllPosts = () => {
+  const postsContainer = document.getElementById("posts-container");
 
-profileImage.src = currentUser.profileImage;
-profileImageInputDiv.style.display = "none";
+  const allPosts = JSON.parse(localStorage.getItem("posts")) || false;
 
-const showprofileImageInput = () => {
-  updateImageBtn.style.display = "none";
-  profileImageInputDiv.style.display = "flex";
-  profileImageInput.focus();
-};
-
-const closeProfileImageInput = () => {
-  updateImageBtn.style.display = "block";
-  profileImageInput.value = "";
-  profileImageInputDiv.style.display = "none";
-};
-
-const showUsernameInput = () => {
-  username.disabled = false;
-  username.nextElementSibling.style.display = "none";
-  username.focus();
-};
-
-const updateAccountDetails = () => {
-  const errorMessage = document.getElementById("error-message");
-
-  if (username.value == "") {
-    errorMessage.innerText = "Your Name is Required";
-    setTimeout(() => {
-      errorMessage.innerText = "";
-    }, 1500);
-    return;
+  if (!allPosts) {
+    postsContainer.style.color = "grey";
+    postsContainer.innerHTML = "<br/>No Post Available";
+  } else {
   }
-
-  if (username.value == currentUser.username && profileImageInput.value == "") {
-    errorMessage.innerText = "Nothing to Update";
-    setTimeout(() => {
-      errorMessage.innerText = "";
-    }, 1500);
-    return;
-  }
-
-  const updatedUser = {
-    email: email.value,
-    gender: currentUser.gender,
-    password: currentUser.password,
-    username: username.value,
-    profileImage: profileImageInput.value
-      ? profileImageInput.value
-      : currentUser.profileImage,
-  };
-
-  const allUsers = getAllUsers();
-
-  const userToUpdate = allUsers.find((user) => {
-    if (user.email == email.value) return user;
-  });
-
-  userToUpdate.email = email.value;
-  userToUpdate.username = username.value;
-  userToUpdate.profileImage = profileImageInput.value
-    ? profileImageInput.value
-    : currentUser.profileImage;
-
-  localStorage.setItem("LoggedInUser", JSON.stringify(userToUpdate));
-
-  localStorage.setItem("users", JSON.stringify(allUsers));
-
-  alert("Details updated successfully");
-
-  window.location.href = "/application";
 };
+setAllPosts();
+
+// set post date and time
+
+const postDateTime = () => {
+  const date = new Date();
+
+  const postDate = [date.getDate(), date.getMonth(), date.getFullYear()];
+  const postDateString = postDate.join("/");
+
+  const postTime = [
+    date.getHours() > 12
+      ? date.getHours() - 12
+      : date.getHours() == 0
+      ? "12"
+      : date.getHours(),
+    date.getMinutes(),
+  ];
+  let postTimeString = postTime.join(":");
+
+  postTimeString += date.getHours() >= 12 ? "pm" : "am";
+
+  const postDateAndTime = postDateString + " - " + postTimeString;
+
+  return postDateAndTime;
+};
+
+// const posts = [
+//   {
+//     userEmail: "sami@gmail.com",
+//     postDate: postDateTime(),
+//     postDesc: "post desc",
+//     postImage:
+//       "https://images.adsttc.com/media/images/5d44/14fa/284d/d1fd/3a00/003d/large_jpg/eiffel-tower-in-paris-151-medium.jpg?1564742900",
+//     likeCounts: "0",
+//     comments: [],
+//   },
+// ];

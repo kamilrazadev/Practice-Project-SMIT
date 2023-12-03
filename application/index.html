@@ -43,11 +43,11 @@
     </nav>
 
     <!-- content -->
-    <section class="grid grid-cols-3">
-        <section class="col-span-1">post something</section>
-        <section class="col-span-2 flex flex-col items-center">
-            <!-- single post -->
-            <div class="p-5 max-w-[600px]">
+    <section class="grid md:grid-cols-3">
+        <section class="hidden md:flex col-span-1 max-h-[90vh] overflow-y-auto">post something</section>
+        <section id="posts-container" class="col-span-2 flex flex-col items-center max-h-[90vh] overflow-y-auto">
+            <!-- posts here -->
+            <!-- <div class="p-5">
                 <div class="p-5 !w-fit rounded-lg shadow-md bg-white">
                     <div class="flex gap-3 mb-2">
                         <div
@@ -62,54 +62,28 @@
                     </div>
                     <p class="my-2">post description</p>
                     <img class="w-full h-auto " src="https://images.adsttc.com/media/images/5d44/14fa/284d/d1fd/3a00/003d/large_jpg/eiffel-tower-in-paris-151-medium.jpg?1564742900" alt="post image">
-                    <div class="flex justify-between mt-5 px-10 text-xl text-gray-600">
-                        <div class="flex items-center gap-2 cursor-pointer">
-                            <i class="far fa-thumbs-up"></i>
-                            <p class="text-base">Like</p>
-                        </div>
-                        <div class="flex items-center gap-2 cursor-pointer">
-                            <i class="far fa-comment-dots"></i>
-                            <p class="text-sm">Comment</p>
-                        </div>
-                        <div class="flex items-center gap-2 cursor-pointer">
-                            <i class="fas fa-share"></i>
-                            <p class="text-base">Share</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="p-5 max-w-[600px]">
-                <div class="p-5 !w-fit rounded-lg shadow-md bg-white">
-                    <div class="flex gap-3 mb-2">
-                        <div
-                            style="background-image: url(https://images.adsttc.com/media/images/5d44/14fa/284d/d1fd/3a00/003d/large_jpg/eiffel-tower-in-paris-151-medium.jpg?1564742900);"
-                            class="w-[40px] h-[40px] rounded-full bg-cover bg-center">
-                        </div>
 
-                        <div>
-                            <p class="font-semibold">M Kamil Raza</p>
-                            <p class="text-gray-600 text-[12px]">3-10-2023 - 2:00pm</p>
-                        </div>
+                    <div class="mt-3 flex gap-2">
+                        <i class="fas fa-thumbs-up text-blue-600"></i>
+                        <p class="text-gray-600 text-sm" id="like-counts">0</p>
                     </div>
-                    <p class="my-2">post description</p>
-                    <img class="w-full h-auto " src="https://images.adsttc.com/media/images/5d44/14fa/284d/d1fd/3a00/003d/large_jpg/eiffel-tower-in-paris-151-medium.jpg?1564742900" alt="post image">
-                    <div class="flex justify-between mt-5 px-10 text-xl text-gray-600">
-                        <div class="flex items-center gap-2 cursor-pointer">
+
+                    <div class="flex justify-between pt-2 mt-3 px-10 text-xl text-gray-600 border-t-2">
+                        <div class="scale-75 sm:scale-100 flex items-center gap-2 cursor-pointer">
                             <i class="far fa-thumbs-up"></i>
                             <p class="text-base">Like</p>
                         </div>
-                        <div class="flex items-center gap-2 cursor-pointer">
+                        <div class="scale-75 sm:scale-100 flex items-center gap-2 cursor-pointer">
                             <i class="far fa-comment-dots"></i>
                             <p class="text-sm">Comment</p>
                         </div>
-                        <div class="flex items-center gap-2 cursor-pointer">
+                        <div class="scale-75 sm:scale-100 flex items-center gap-2 cursor-pointer">
                             <i class="fas fa-share"></i>
                             <p class="text-base">Share</p>
                         </div>
                     </div>
                 </div>
-            </div>
-            
+            </div>             -->
         </section>
     </section>
 
