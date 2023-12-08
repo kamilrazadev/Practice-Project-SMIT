@@ -114,11 +114,12 @@ const setAllPosts = () => {
                     }
 
                     <div class="mt-3 flex justify-between">
-                        <div class="flex gap-2">
+                        <div class="flex gap-2 align-items-center">
                             <i class="fas fa-thumbs-up text-blue-600"></i>
                             <p class="text-gray-600 text-sm" id="like-counts">${
-                              post.likeCounts
+                              post.likes.length
                             }</p>
+                            <p class="text-[14px] text-gray-500">liked by names here</p>
                         </div>
                         <div class="flex gap-2">
                             <i class="far fa-comment-dots"></i>
@@ -129,7 +130,9 @@ const setAllPosts = () => {
                     </div>
 
                     <div class="flex justify-between pt-2 mt-3 px-10 text-xl text-gray-600 border-t-2">
-                        <div title="Like Post" class="scale-75 sm:scale-100 flex items-center gap-2 cursor-pointer">
+                        <div title="Like Post" class="scale-75 sm:scale-100 flex items-center gap-2 cursor-pointer" onclick="postLiked(${
+                          post.id
+                        })">
                             <i class="far fa-thumbs-up"></i>
                             <p class="text-base">Like</p>
                         </div>
@@ -195,6 +198,7 @@ const setPost = () => {
   const allPosts = JSON.parse(localStorage.getItem("posts")) || [];
 
   const post = {
+    id: allPosts.length + 1,
     user: {
       username: currentUser.username,
       email: currentUser.email,
@@ -203,7 +207,7 @@ const setPost = () => {
     postDate: postDateTime(),
     postDesc: postDesc.value,
     postImage: "",
-    likeCounts: 0,
+    likes: [],
     comments: [],
   };
 
@@ -213,6 +217,32 @@ const setPost = () => {
   setTimeout(() => {
     setAllPosts();
   }, 2000);
+};
+
+// Like The Post
+
+const postLiked = (postId, thisElem) => {
+  console.log(thisElem);
+  const allPosts = JSON.parse(localStorage.getItem("posts"));
+
+  const postLiked = allPosts.find((post) => {
+    if (post.id == postId) return post;
+  });
+
+  const alreadyLiked = postLiked.likes.find((likeBy) => {
+    if (likeBy == currentUser.email) return likeBy;
+  });
+
+  if (alreadyLiked) {
+    const indexOfUser = postLiked.likes.indexOf(alreadyLiked);
+    postLiked.likes.splice(indexOfUser, 1);
+  } else {
+    postLiked.likes.push(currentUser.email);
+  }
+
+  localStorage.setItem("posts", JSON.stringify(allPosts));
+
+  setAllPosts();
 };
 
 document.getElementById("post-btn").addEventListener("click", setPost);
