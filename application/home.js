@@ -1,3 +1,15 @@
+// Loading Logic
+
+const mainSection = document.getElementById("main");
+const loader = document.getElementById("loader");
+
+window.onload = () => {
+  setTimeout(() => {
+    loader.style.display = "none";
+    mainSection.style.display = "block";
+  }, 500);
+};
+
 // to check user logged or not
 const isUserExists = localStorage.getItem("LoggedInUser") || false;
 
@@ -41,6 +53,10 @@ const logoutHandler = () => {
   window.location.reload();
 };
 
+document
+  .getElementById("logout-handler")
+  .addEventListener("click", logoutHandler);
+
 // show account details/actions container
 
 const showAccountDetails = () => {
@@ -53,6 +69,10 @@ const showAccountDetails = () => {
     accoutnDetails.classList.remove("flex");
   }
 };
+
+document
+  .getElementById("acc-details")
+  .addEventListener("click", showAccountDetails);
 
 // setting posts
 
@@ -168,6 +188,8 @@ const enablePostBtn = (elem) => {
   }
 };
 
+// Adding post
+
 const setPost = () => {
   const postDesc = document.getElementById("post-desc");
   const allPosts = JSON.parse(localStorage.getItem("posts")) || [];
@@ -192,3 +214,5 @@ const setPost = () => {
     setAllPosts();
   }, 2000);
 };
+
+document.getElementById("post-btn").addEventListener("click", setPost);
