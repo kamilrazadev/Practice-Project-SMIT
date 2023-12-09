@@ -74,6 +74,12 @@ document
   .getElementById("acc-details")
   .addEventListener("click", showAccountDetails);
 
+// for getting names of persons liked the post
+
+const getLikedByNames = (LikedByMails) => {
+  
+};
+
 // setting posts
 
 const setAllPosts = () => {
@@ -116,10 +122,12 @@ const setAllPosts = () => {
                     <div class="mt-3 flex justify-between">
                         <div class="flex gap-2 align-items-center">
                             <i class="fas fa-thumbs-up text-blue-600"></i>
+                            <p class="text-[14px] text-gray-500">${getLikedByNames(
+                              post.likes
+                            )}</p>
                             <p class="text-gray-600 text-sm" id="like-counts">${
                               post.likes.length
                             }</p>
-                            <p class="text-[14px] text-gray-500">liked by names here</p>
                         </div>
                         <div class="flex gap-2">
                             <i class="far fa-comment-dots"></i>
