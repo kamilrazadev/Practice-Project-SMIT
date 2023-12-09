@@ -92,6 +92,16 @@ const getPostUser = (postUserEmail) => {
   return postUser;
 };
 
+// to Check either logged in user liked the post or not
+
+const isPostLiked = (post) => {
+  const isLiked = post.likes.find((user) => {
+    if (user == currentUser.username) return user;
+  });
+
+  return isLiked;
+};
+
 // setting posts
 
 const setAllPosts = () => {
@@ -151,7 +161,11 @@ const setAllPosts = () => {
                         <div title="Like Post" class="scale-75 sm:scale-100 flex items-center gap-2 cursor-pointer" onclick="postLiked(${
                           post.id
                         })">
-                            <i class="far fa-thumbs-up"></i>
+                        ${
+                          isPostLiked(post)
+                            ? "<i class='fas fa-thumbs-up text-blue-600'></i>"
+                            : "<i class='far fa-thumbs-up'></i>"
+                        }                                                  
                             <p class="text-base">Like</p>
                         </div>
                         <div title="Comment" class="scale-75 sm:scale-100 flex items-center gap-2 cursor-pointer">
