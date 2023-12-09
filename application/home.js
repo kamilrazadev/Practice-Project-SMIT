@@ -213,6 +213,7 @@ const enablePostBtn = (elem) => {
 
 const setPost = () => {
   const postDesc = document.getElementById("post-desc");
+  const postImage = document.getElementById("post-image");
   const allPosts = JSON.parse(localStorage.getItem("posts")) || [];
 
   const post = {
@@ -220,7 +221,7 @@ const setPost = () => {
     user: currentUser.email,
     postDate: postDateTime(),
     postDesc: postDesc.value,
-    postImage: "",
+    postImage: postImage.value,
     likes: [],
     comments: [],
   };
