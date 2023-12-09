@@ -16,7 +16,7 @@ username.disabled = true;
 username.value = currentUser.username;
 email.value = currentUser.email;
 
-profileImage.src = currentUser.profileImage;
+profileImage.style.backgroundImage = `url(${currentUser.profileImage})`;
 profileImageInputDiv.style.display = "none";
 
 // setting account icon
@@ -29,7 +29,7 @@ if (isUserExists) {
   email.value = currentUser.email;
 
   userProfile.style.display = "flex";
-  userProfileImage.src = currentUser.profileImage;
+  userProfileImage.style.backgroundImage = `url(${currentUser.profileImage})`;
   userName.innerText = currentUser.username;
 }
 

@@ -14,7 +14,9 @@
     <main>
 
         <a href="/application" class="justify-content-start align-items-center gap-3 p-3 text-decoration-none" style="width: 100%;" id="account-bar">
-            <img src=""  alt="Go to Account" id="account-icon" class="w-[40px] rounded-full">
+            <div
+                class="w-[40px] h-[40px] rounded-full bg-cover bg-center cursor-pointer" id="account-icon">
+            </div>
             <p class="m-0 text-black" id="usernameAcc"></p>
         </a>
 
@@ -22,7 +24,9 @@
         <section class="w-full min-h-[90vh] flex items-center justify-center">
             <div class="flex flex-col gap-4 min-w-[350px] text-sm">
                 <div class="w-full flex flex-col items-center justify-center gap-3">
-                    <img src="" alt="Profile Image" id="profile-image" class="w-[150px] rounded-full">
+                    <div
+                        class="w-[130px] h-[130px] rounded-full bg-cover bg-center cursor-pointer" id="profile-image">
+                    </div>
                     <button id="update-profile-btn" class="p-2 border-2 rounded transition active:bg-gray-200 hover:shadow-md" onclick="showprofileImageInput()">Update Profile Image</button>
                 </div>
                 <div>

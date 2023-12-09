@@ -54,7 +54,7 @@ if (isUserExists) {
   email.value = currentUser.email;
 
   userProfile.style.display = "flex";
-  userProfileImage.src = currentUser.profileImage;
+  userProfileImage.style.backgroundColor = "blue";
   userName.innerText = currentUser.username;
 }
 

@@ -26,15 +26,10 @@ userNameDisplay.innerText = currentUser ? currentUser.username : "";
 // setting user's profile image
 const accountIcon = document.getElementById("account-icon");
 const accountIcon2 = document.getElementById("account-icon-2");
-accountIcon.src =
-  currentUser.profileImage == ""
-    ? "https://cdn-icons-png.flaticon.com/512/3237/3237472.png"
-    : currentUser.profileImage;
 
-accountIcon2.src =
-  currentUser.profileImage == ""
-    ? "https://cdn-icons-png.flaticon.com/512/3237/3237472.png"
-    : currentUser.profileImage;
+accountIcon.style.backgroundImage = `url(${currentUser.profileImage})`;
+
+accountIcon2.style.backgroundImage = `url(${currentUser.profileImage})`;
 
 // setting user's name in account details container
 const userNameAcc = document.getElementById("acc-username");
@@ -44,7 +39,10 @@ userNameAcc.innerText = currentUser?.username;
 const postUserImage = document.getElementById("account-icon-post");
 const postUsername = document.getElementById("exampleModalLabel");
 
-postUserImage.src = currentUser.profileImage;
+postUserImage.style.backgroundImage =
+  currentUser.profileImage == ""
+    ? "url('https://cdn-icons-png.flaticon.com/512/3237/3237472.png')"
+    : `url(${currentUser.profileImage})`;
 postUsername.innerText = currentUser.username;
 
 const getAllUsers = () => {
@@ -84,6 +82,16 @@ const showUsersLikedPost = (usersLikedPost) => {
   console.log(usersLikedPost);
 };
 
+// Get the details of User for post
+
+const getPostUser = (postUserEmail) => {
+  const allUsers = getAllUsers();
+  const postUser = allUsers.find((user) => {
+    if (user.email == postUserEmail) return user;
+  });
+  return postUser;
+};
+
 // setting posts
 
 const setAllPosts = () => {
@@ -102,14 +110,15 @@ const setAllPosts = () => {
                 <div class="min-w-[600px] max-w-[90%]  p-5 !w-fit rounded-lg shadow-md bg-white">
                     <div class="flex gap-3 mb-2">
                         <div
-                            style="background-image: url(${
-                              post.user.profileImage
-                            });"
-                            class="w-[40px] h-[40px] rounded-full bg-cover bg-center">
+                            class="w-[40px] h-[40px] rounded-full bg-cover bg-center bg-[url(${
+                              getPostUser(post.user).profileImage
+                            })]">
                         </div>
 
                         <div>
-                            <p class="font-semibold">${post.user.username}</p>
+                            <p class="font-semibold">${
+                              getPostUser(post.user).username
+                            }</p>
                             <p class="text-gray-600 text-[12px]">${
                               post.postDate
                             }</p>
@@ -208,11 +217,7 @@ const setPost = () => {
 
   const post = {
     id: allPosts.length + 1,
-    user: {
-      username: currentUser.username,
-      email: currentUser.email,
-      profileImage: currentUser.profileImage,
-    },
+    user: currentUser.email,
     postDate: postDateTime(),
     postDesc: postDesc.value,
     postImage: "",
