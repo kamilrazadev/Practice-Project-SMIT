@@ -47,6 +47,10 @@ const postUsername = document.getElementById("exampleModalLabel");
 postUserImage.src = currentUser.profileImage;
 postUsername.innerText = currentUser.username;
 
+const getAllUsers = () => {
+  return JSON.parse(localStorage.getItem("users"));
+};
+
 // loging out
 const logoutHandler = () => {
   localStorage.removeItem("LoggedInUser");
@@ -74,10 +78,10 @@ document
   .getElementById("acc-details")
   .addEventListener("click", showAccountDetails);
 
-// for getting names of persons liked the post
+// show users liked the post
 
-const getLikedByNames = (LikedByMails) => {
-  
+const showUsersLikedPost = (usersLikedPost) => {
+  console.log(usersLikedPost);
 };
 
 // setting posts
@@ -120,11 +124,8 @@ const setAllPosts = () => {
                     }
 
                     <div class="mt-3 flex justify-between">
-                        <div class="flex gap-2 align-items-center">
+                        <div class="flex gap-2 align-items-center cursor-pointer" onclick=" () => alert("asd")" >
                             <i class="fas fa-thumbs-up text-blue-600"></i>
-                            <p class="text-[14px] text-gray-500">${getLikedByNames(
-                              post.likes
-                            )}</p>
                             <p class="text-gray-600 text-sm" id="like-counts">${
                               post.likes.length
                             }</p>
@@ -229,23 +230,22 @@ const setPost = () => {
 
 // Like The Post
 
-const postLiked = (postId, thisElem) => {
-  console.log(thisElem);
+const postLiked = (postId) => {
   const allPosts = JSON.parse(localStorage.getItem("posts"));
 
   const postLiked = allPosts.find((post) => {
     if (post.id == postId) return post;
   });
 
-  const alreadyLiked = postLiked.likes.find((likeBy) => {
-    if (likeBy == currentUser.email) return likeBy;
+  const alreadyLiked = postLiked.likes.find((likeByUsername) => {
+    if (likeByUsername == currentUser.username) return likeByUsername;
   });
 
   if (alreadyLiked) {
     const indexOfUser = postLiked.likes.indexOf(alreadyLiked);
     postLiked.likes.splice(indexOfUser, 1);
   } else {
-    postLiked.likes.push(currentUser.email);
+    postLiked.likes.push(currentUser.username);
   }
 
   localStorage.setItem("posts", JSON.stringify(allPosts));
