@@ -116,8 +116,8 @@ const setAllPosts = () => {
     postsContainer.innerHTML = "";
     allPosts.forEach((post) => {
       postsContainer.innerHTML += `
-      <div class="p-2">
-                <div class="min-w-[600px] max-w-[90%]  p-5 !w-fit rounded-lg shadow-md bg-white">
+      <div class="p-2 w-full max-w-[600px]">
+                <div class="p-4 w-full rounded-lg shadow-md bg-white">
                     <div class="flex gap-3 mb-2">
                         <div
                             class="w-[40px] h-[40px] rounded-full bg-cover bg-center bg-[url(${
@@ -157,8 +157,8 @@ const setAllPosts = () => {
                         </div>
                     </div>
 
-                    <div class="flex justify-between pt-2 mt-3 px-10 text-xl text-gray-600 border-t-2">
-                        <div title="Like Post" class="scale-75 sm:scale-100 flex items-center gap-2 cursor-pointer" onclick="postLiked(${
+                    <div class="flex justify-between pt-2 mt-3 sm:px-10 text-xl text-gray-600 border-t-2">
+                        <div title="Like Post" class="flex items-center gap-2 cursor-pointer  text-[13px] sm:text-[16px]" onclick="postLiked(${
                           post.id
                         })">
                         ${
@@ -166,15 +166,15 @@ const setAllPosts = () => {
                             ? "<i class='fas fa-thumbs-up text-blue-600'></i>"
                             : "<i class='far fa-thumbs-up'></i>"
                         }                                                  
-                            <p class="text-base">Like</p>
+                            <p class="">Like</p>
                         </div>
-                        <div title="Comment" class="scale-75 sm:scale-100 flex items-center gap-2 cursor-pointer">
+                        <div title="Comment" class="flex items-center gap-2 cursor-pointer text-[13px] sm:text-[16px]">
                             <i class="far fa-comment-dots"></i>
-                            <p class="text-sm">Comment</p>
+                            <p class="">Comment</p>
                         </div>
-                        <div title="Share Post" class="scale-75 sm:scale-100 flex items-center gap-2 cursor-pointer">
+                        <div title="Share Post" class="flex items-center gap-2 cursor-pointer  text-[13px] sm:text-[16px]">
                             <i class="fas fa-share"></i>
-                            <p class="text-base">Share</p>
+                            <p class="">Share</p>
                         </div>
                     </div>
                 </div>
