@@ -8,6 +8,27 @@ const passwordError = document.getElementById("password-error");
 
 email.value = "@gmail.com";
 
+// to check user logged or not
+const isUserExists = localStorage.getItem("LoggedInUser") || false;
+
+const currentUser = JSON.parse(isUserExists);
+
+console.log(currentUser);
+
+// setting account icon
+const userProfile = document.getElementById("account-bar");
+const userProfileImage = document.getElementById("account-icon");
+const userName = document.getElementById("usernameAcc");
+userProfile.style.display = "none";
+
+if (isUserExists) {
+  email.value = currentUser.email;
+
+  userProfile.style.display = "flex";
+  userProfileImage.style.backgroundImage = `url(${currentUser.profileImage})`;
+  userName.innerText = currentUser.username;
+}
+
 // Show and Hide Password
 function password_show_hide(elem) {
   var x = elem.previousElementSibling;

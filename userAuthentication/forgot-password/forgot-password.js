@@ -8,6 +8,23 @@ const passwordError = document.getElementById("password-error");
 
 email.value = "@gmail.com";
 
+// If user exists then set mail and image in forgot password section
+
+const isUserExists = localStorage.getItem("LoggedInUser") || false;
+const userProfile = document.getElementById("account-bar");
+const userProfileImage = document.getElementById("account-icon");
+const userName = document.getElementById("username");
+userProfile.style.display = "none";
+
+if (isUserExists) {
+  const currentUser = JSON.parse(isUserExists);
+  email.value = currentUser.email;
+
+  userProfile.style.display = "flex";
+  userProfileImage.style.backgroundImage = `url(${currentUser.profileImage})`;
+  userName.innerText = currentUser.username;
+}
+
 // Show and Hide Password
 function password_show_hide(elem) {
   var x = elem.previousElementSibling;
@@ -40,23 +57,6 @@ const matchPasswords = () => {
 cPass.addEventListener("input", matchPasswords);
 
 pass.addEventListener("input", matchPasswords);
-
-// If user exists then set mail and image in forgot password section
-
-const isUserExists = localStorage.getItem("LoggedInUser") || false;
-const userProfile = document.getElementById("account-bar");
-const userProfileImage = document.getElementById("account-icon");
-const userName = document.getElementById("username");
-userProfile.style.display = "none";
-
-if (isUserExists) {
-  const currentUser = JSON.parse(isUserExists);
-  email.value = currentUser.email;
-
-  userProfile.style.display = "flex";
-  userProfileImage.style.backgroundColor = "blue";
-  userName.innerText = currentUser.username;
-}
 
 // Reset Password Hanlder
 

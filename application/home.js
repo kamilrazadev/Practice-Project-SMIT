@@ -21,19 +21,24 @@ if (!isUserExists) {
 // setting user's name
 const userNameDisplay = document.getElementById("username-span");
 const currentUser = JSON.parse(isUserExists);
+
 userNameDisplay.innerText = currentUser ? currentUser.username : "";
 
 // setting user's profile image
 const accountIcon = document.getElementById("account-icon");
 const accountIcon2 = document.getElementById("account-icon-2");
+const accountIconSidebar = document.getElementById("account-icon-sidebar");
 
 accountIcon.style.backgroundImage = `url(${currentUser.profileImage})`;
-
 accountIcon2.style.backgroundImage = `url(${currentUser.profileImage})`;
+accountIconSidebar.style.backgroundImage = `url(${currentUser.profileImage})`;
 
 // setting user's name in account details container
 const userNameAcc = document.getElementById("acc-username");
+const userNameAccSidebar = document.getElementById("acc-username-sidebar");
+
 userNameAcc.innerText = currentUser?.username;
+userNameAccSidebar.innerText = currentUser?.username;
 
 // setting items to post modal
 const postUserImage = document.getElementById("account-icon-post");
@@ -117,8 +122,8 @@ const setAllPosts = () => {
     allPosts.forEach((post) => {
       postsContainer.innerHTML += `
       <div class="p-2 w-full max-w-[600px]">
-                <div class="p-4 w-full rounded-lg shadow-md bg-white">
-                    <div class="flex gap-3 mb-2">
+                <div class="w-full rounded-lg shadow-md bg-white">
+                    <div class="p-4 pb-0 flex gap-3 mb-2">
                         <div
                             class="w-[40px] h-[40px] rounded-full bg-cover bg-center bg-[url(${
                               getPostUser(post.user).profileImage
@@ -134,7 +139,7 @@ const setAllPosts = () => {
                             }</p>
                         </div>
                     </div>
-                    <p class="my-2">${post.postDesc}</p>
+                    <p class="py-2 px-4">${post.postDesc}</p>
 
                     ${
                       post.postImage == ""
@@ -142,7 +147,7 @@ const setAllPosts = () => {
                         : `<img class='w-full h-auto' src='${post.postImage}' alt='post image'>`
                     }
 
-                    <div class="mt-3 flex justify-between">
+                    <div class="px-4 my-3 flex justify-between">
                         <div class="flex gap-2 align-items-center cursor-pointer" onclick=" () => alert("asd")" >
                             <i class="fas fa-thumbs-up text-blue-600"></i>
                             <p class="text-gray-600 text-sm" id="like-counts">${
@@ -157,24 +162,26 @@ const setAllPosts = () => {
                         </div>
                     </div>
 
-                    <div class="flex justify-between pt-2 mt-3 sm:px-10 text-xl text-gray-600 border-t-2">
-                        <div title="Like Post" class="flex items-center gap-2 cursor-pointer  text-[13px] sm:text-[16px]" onclick="postLiked(${
-                          post.id
-                        })">
-                        ${
-                          isPostLiked(post)
-                            ? "<i class='fas fa-thumbs-up text-blue-600'></i>"
-                            : "<i class='far fa-thumbs-up'></i>"
-                        }                                                  
-                            <p class="">Like</p>
-                        </div>
-                        <div title="Comment" class="flex items-center gap-2 cursor-pointer text-[13px] sm:text-[16px]">
-                            <i class="far fa-comment-dots"></i>
-                            <p class="">Comment</p>
-                        </div>
-                        <div title="Share Post" class="flex items-center gap-2 cursor-pointer  text-[13px] sm:text-[16px]">
-                            <i class="fas fa-share"></i>
-                            <p class="">Share</p>
+                    <div class="p-4 pt-0">
+                        <div class="pt-4 flex justify-between  border-t-2  sm:px-10 text-xl text-gray-600 ">
+                          <div title="Like Post" class="flex items-center gap-2 cursor-pointer  text-[13px] sm:text-[16px]" onclick="postLiked(${
+                            post.id
+                          })">
+                          ${
+                            isPostLiked(post)
+                              ? "<i class='fas fa-thumbs-up text-blue-600'></i>"
+                              : "<i class='far fa-thumbs-up'></i>"
+                          }                                                  
+                              <p class="">Like</p>
+                          </div>
+                          <div title="Comment" class="flex items-center gap-2 cursor-pointer text-[13px] sm:text-[16px]">
+                              <i class="far fa-comment-dots"></i>
+                              <p class="">Comment</p>
+                          </div>
+                          <div title="Share Post" class="flex items-center gap-2 cursor-pointer  text-[13px] sm:text-[16px]">
+                              <i class="fas fa-share"></i>
+                              <p class="">Share</p>
+                          </div>
                         </div>
                     </div>
                 </div>

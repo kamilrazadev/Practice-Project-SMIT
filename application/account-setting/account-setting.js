@@ -5,6 +5,12 @@ const currentUser = JSON.parse(isUserExists);
 
 const username = document.getElementById("username");
 const email = document.getElementById("email");
+const bio = document.getElementById("bio");
+const address = document.getElementById("address");
+const institute = document.getElementById("institute");
+const work = document.getElementById("work");
+const phone = document.getElementById("phone");
+
 const profileImageInputDiv = document.getElementById("profile-image-input");
 const profileImageInput = document.getElementById(
   "profile-image-input"
@@ -12,9 +18,16 @@ const profileImageInput = document.getElementById(
 const profileImage = document.getElementById("profile-image");
 const updateImageBtn = document.getElementById("update-profile-btn");
 
+// setting values to input fields
+
 username.disabled = true;
 username.value = currentUser.username;
 email.value = currentUser.email;
+bio.value = currentUser.bio ? currentUser.bio : "";
+address.value = currentUser.address ? currentUser.address : "";
+institute.value = currentUser.institute ? currentUser.institute : "";
+work.value = currentUser.work ? currentUser.work : "";
+phone.value = currentUser.phone ? currentUser.phone : "";
 
 profileImage.style.backgroundImage = `url(${currentUser.profileImage})`;
 profileImageInputDiv.style.display = "none";
@@ -75,23 +88,22 @@ const updateAccountDetails = () => {
     return;
   }
 
-  if (username.value == currentUser.username && profileImageInput.value == "") {
+  if (
+    username.value == currentUser.username &&
+    profileImageInput.value == "" &&
+    bio.value == "" &&
+    city.value == "" &&
+    country.value == "" &&
+    institute.value == "" &&
+    work.value == "" &&
+    phone.value == ""
+  ) {
     errorMessage.innerText = "Nothing to Update";
     setTimeout(() => {
       errorMessage.innerText = "";
     }, 1500);
     return;
   }
-
-  const updatedUser = {
-    email: email.value,
-    gender: currentUser.gender,
-    password: currentUser.password,
-    username: username.value,
-    profileImage: profileImageInput.value
-      ? profileImageInput.value
-      : currentUser.profileImage,
-  };
 
   const allUsers = getAllUsers();
 
@@ -101,6 +113,12 @@ const updateAccountDetails = () => {
 
   userToUpdate.email = email.value;
   userToUpdate.username = username.value;
+  userToUpdate.bio = bio.value;
+  userToUpdate.address = address.value;
+  userToUpdate.institute = institute.value;
+  userToUpdate.work = work.value;
+  userToUpdate.phone = phone.value;
+
   userToUpdate.profileImage = profileImageInput.value
     ? profileImageInput.value
     : currentUser.profileImage;
