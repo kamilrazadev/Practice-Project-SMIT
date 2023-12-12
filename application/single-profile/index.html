@@ -14,8 +14,8 @@
     <title id="page-title"></title>
 </head>
 <body class="bg-gray-200 min-h-[100vh]">
-    <p id="loader">Laoding...</p>
-    <main id="main" class="hidden">
+    <!-- <p id="loader">Laoding...</p> -->
+    <main id="main" class="">
         <nav class="relative max-h-[60px] p-3 flex justify-between items-center shadow-md bg-white">
             <h3 class="text-2xl font-semibold">Welcome, <span id="username-span" class="text-blue-500"></span> </h3>
     
@@ -57,7 +57,7 @@
             </div>
         </nav>
 
-        <section class="flex flex-col items-center w-full">
+        <section class="flex flex-col items-center w-full px-2">
 
             <div class="max-w-[800px] w-full">
 
@@ -66,20 +66,23 @@
                         <div
                             class="w-full h-[30vh] sm:h-[50vh] bg-cover bg-center cursor-pointer rounded-b-lg" id="main-profile-image">
                         </div>
-                        <div class="absolute w-full h-[100vh] !top-0 left-0 flex items-center justify-center transition-transform duration-100 ease-linear" id="full-profile-container">
-                            <img class="h-auto  rounded" alt="" id="main-profile-image-full"> 
+                        <div class="fixed w-full h-[100vh] !top-0 left-0 flex items-center justify-center transition-transform duration-100 ease-linear" id="full-profile-container">
+                            <img class=" w-[95%] sm:h-[80%] sm:w-auto  rounded" alt="" id="main-profile-image-full"> 
                         </div>
                     </div>
                 </section>
 
-                <section class="grid grid-cols-5 gap-2 my-3">
+                <section class="grid sm:grid-cols-5 gap-2 my-3">
                     
-                    <div class="col-span-2 bg-white shadow-md rounded-lg p-3">
-                        <h4 class="font-semibold mb-2">Intro</h4>
-                        <p class="text-sm" id="user-bio"></p>
-                        <a href="/application/account-setting/">
-                            <button class="w-full py-2 my-2 text-sm rounded bg-gray-200 hover:bg-gray-300 active:scale-[0.9] transition">Edit Bio</button>
-                        </a>
+                    <div class="sm:col-span-2 md:w-auto !h-fit bg-white shadow-md rounded-lg p-3">
+
+                        <div class="sm:!text-start max-[400px]:!text-start !text-center">
+                            <h4 class="font-semibold mb-2">Intro</h4>
+                            <p class="text-sm" id="user-bio"></p>
+                            <a href="/application/account-setting/">
+                                <button class="w-full py-2 my-2 text-sm rounded bg-gray-200 hover:bg-gray-300 active:scale-[0.9] transition">Edit Bio</button>
+                            </a>
+                        </div>
 
                         <div class="flex flex-col gap-2 my-3">
                             <div>
@@ -110,7 +113,9 @@
 
                     </div>
 
-                    <div class="col-span-3 bg-white shadow-md rounded-lg p-3"></div>
+                    <div id="user-posts-container" class="sm:col-span-3 bg-none rounded-lg w-full flex flex-col items-center h-[100vh]  overflow-y-auto">
+
+                    </div>
                 </section>
 
             </div>

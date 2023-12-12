@@ -1,14 +1,14 @@
 // Loading Logic
 
 const mainSection = document.getElementById("main");
-const loader = document.getElementById("loader");
+// const loader = document.getElementById("loader");
 
-window.onload = () => {
-  setTimeout(() => {
-    loader.style.display = "none";
-    mainSection.style.display = "block";
-  }, 500);
-};
+// window.onload = () => {
+//   setTimeout(() => {
+//     loader.style.display = "none";
+//     mainSection.style.display = "block";
+//   }, 500);
+// };
 
 // to check user logged or not
 const isUserExists = localStorage.getItem("LoggedInUser") || false;
@@ -143,3 +143,146 @@ currentUser.phone
   ? ((phone.textContent = currentUser.phone),
     (phone.href = `tel:${currentUser.phone}`))
   : (phone.parentNode.style.display = "none");
+
+// show post menu to edit and delete
+
+const showPostMenu = () => {
+  const postMenu = document.getElementById("post-menu");
+  postMenu.classList.toggle("hidden");
+};
+
+// to Check either logged in user liked the post or not
+
+const isPostLiked = (post) => {
+  const isLiked = post.likes.find((user) => {
+    if (user == currentUser.username) return user;
+  });
+
+  return isLiked;
+};
+
+// setting all users posts
+
+const setUserPost = () => {
+  const userPostsContainer = document.getElementById("user-posts-container");
+
+  const allPosts = JSON.parse(localStorage.getItem("posts")) || false;
+
+  if (!allPosts) {
+    userPostsContainer.style.color = "grey";
+    userPostsContainer.innerHTML = "<br/>Nothing Posted";
+  } else {
+    const thisUsersPosts = allPosts.filter((post) => {
+      if (post.user == currentUser.email) return post;
+    });
+
+    userPostsContainer.innerHTML = "";
+
+    thisUsersPosts.forEach((post) => {
+      userPostsContainer.innerHTML += `
+      <div class=" w-full max-w-[600px]">
+                <div class="w-full rounded-lg shadow-md bg-white">
+                    <div class="p-4 pb-0 mb-2">
+                        <div class="w-full flex justify-between">
+                          <div class="flex gap-3 ">
+                            <div
+                                class="w-[40px] h-[40px] rounded-full bg-cover bg-center bg-[url(${
+                                  currentUser.profileImage
+                                })]">
+                            </div>
+
+                            <div>
+                                <p class="font-semibold">${
+                                  currentUser.username
+                                }</p>
+                                <p class="text-gray-600 text-[12px]">${
+                                  post.postDate
+                                }</p>
+                            </div>
+                          </div>
+                                <div class="relative h-fit">
+                                  <img src="/assets/icons/menu-icon.png" alt="options" class="h-[20px] cursor-pointer" onclick="showPostMenu()" />
+                                  <div id="post-menu" class="hidden absolute top-[100%] right-0 bg-white shadow-md rounded-md flex flex-col">
+                                    <span class="px-4 py-2 rounded-t-md hover:bg-gray-200 cursor-pointer">Edit</span>
+                                    <span class="px-4 py-2 rounded-b-md hover:bg-gray-200 cursor-pointer">Delete</span>
+                                  </div>
+                                </div>
+                          </div>
+                    </div>
+                    <p class="py-2 px-4">${post.postDesc}</p>
+
+                    ${
+                      post.postImage == ""
+                        ? "<div></div>"
+                        : `<img class='w-full h-auto' src='${post.postImage}' alt='post image'>`
+                    }
+
+                    <div class="px-4 my-3 flex justify-between">
+                        <div class="flex gap-2 align-items-center cursor-pointer" onclick=" () => alert("asd")" >
+                            <i class="fas fa-thumbs-up text-blue-600"></i>
+                            <p class="text-gray-600 text-sm" id="like-counts">${
+                              post.likes.length
+                            }</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <i class="far fa-comment-dots"></i>
+                            <p class="text-gray-600 text-sm" id="like-counts">${
+                              post.comments.length
+                            }</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 pt-0">
+                        <div class="pt-4 flex justify-between  border-t-2  sm:px-10 text-xl text-gray-600 ">
+                          <div title="Like Post" class="flex items-center gap-2 cursor-pointer  text-[13px] sm:text-[16px]" onclick="postLiked(${
+                            post.id
+                          })">
+                          ${
+                            isPostLiked(post)
+                              ? "<i class='fas fa-thumbs-up text-blue-600'></i>"
+                              : "<i class='far fa-thumbs-up'></i>"
+                          }                                                  
+                              <p class="">Like</p>
+                          </div>
+                          <div title="Comment" class="flex items-center gap-2 cursor-pointer text-[13px] sm:text-[16px]">
+                              <i class="far fa-comment-dots"></i>
+                              <p class="">Comment</p>
+                          </div>
+                          <div title="Share Post" class="flex items-center gap-2 cursor-pointer  text-[13px] sm:text-[16px]">
+                              <i class="fas fa-share"></i>
+                              <p class="">Share</p>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      `;
+    });
+  }
+};
+setUserPost();
+
+// Like The Post
+
+const postLiked = (postId) => {
+  const allPosts = JSON.parse(localStorage.getItem("posts"));
+
+  const postLiked = allPosts.find((post) => {
+    if (post.id == postId) return post;
+  });
+
+  const alreadyLiked = postLiked.likes.find((likeByUsername) => {
+    if (likeByUsername == currentUser.username) return likeByUsername;
+  });
+
+  if (alreadyLiked) {
+    const indexOfUser = postLiked.likes.indexOf(alreadyLiked);
+    postLiked.likes.splice(indexOfUser, 1);
+  } else {
+    postLiked.likes.push(currentUser.username);
+  }
+
+  localStorage.setItem("posts", JSON.stringify(allPosts));
+
+  setUserPost();
+};
