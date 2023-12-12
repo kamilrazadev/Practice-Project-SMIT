@@ -1,14 +1,14 @@
 // Loading Logic
 
 const mainSection = document.getElementById("main");
-// const loader = document.getElementById("loader");
+const loader = document.getElementById("loader");
 
-// window.onload = () => {
-//   setTimeout(() => {
-//     loader.style.display = "none";
-//     mainSection.style.display = "block";
-//   }, 500);
-// };
+window.onload = () => {
+  setTimeout(() => {
+    loader.style.display = "none";
+    mainSection.style.display = "block";
+  }, 500);
+};
 
 // to check user logged or not
 const isUserExists = localStorage.getItem("LoggedInUser") || false;

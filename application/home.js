@@ -107,6 +107,13 @@ const isPostLiked = (post) => {
   return isLiked;
 };
 
+// show post menu to edit and delete
+
+const showPostMenu = (thisElem) => {
+  const postMenu = thisElem.nextElementSibling;
+  postMenu.classList.toggle("hidden");
+};
+
 // setting posts
 
 const setAllPosts = () => {
@@ -122,23 +129,38 @@ const setAllPosts = () => {
     allPosts.forEach((post) => {
       postsContainer.innerHTML += `
       <div class="p-2 w-full max-w-[600px]">
-                <div class="w-full rounded-lg shadow-md bg-white">
-                    <div class="p-4 pb-0 flex gap-3 mb-2">
-                        <div
-                            class="w-[40px] h-[40px] rounded-full bg-cover bg-center bg-[url(${
-                              getPostUser(post.user).profileImage
-                            })]">
-                        </div>
+                  <div class="w-full rounded-lg shadow-md bg-white">
+                      <div class="p-4 pb-0 mb-2">
+                      <div class="w-full flex justify-between">
+                        <div class="flex gap-3 ">
+                          <div
+                              class="w-[40px] h-[40px] rounded-full bg-cover bg-center bg-[url(${
+                                getPostUser(post.user).profileImage
+                              })]">
+                          </div>
 
-                        <div>
-                            <p class="font-semibold">${
-                              getPostUser(post.user).username
-                            }</p>
-                            <p class="text-gray-600 text-[12px]">${
-                              post.postDate
-                            }</p>
+                          <div>
+                              <p class="font-semibold">${
+                                getPostUser(post.user).username
+                              }</p>
+                              <p class="text-gray-600 text-[12px]">${
+                                post.postDate
+                              }</p>
+                          </div>
                         </div>
-                    </div>
+                              ${
+                                currentUser.email == post.user
+                                  ? `<div class="relative h-fit">
+                                  <img src="/assets/icons/menu-icon.png" alt="options" class="h-[20px] cursor-pointer" onclick="showPostMenu(this)" />
+                                  <div class="hidden absolute top-[100%] right-0 bg-white shadow-md rounded-md flex flex-col">
+                                    <span class="px-4 py-2 rounded-t-md hover:bg-gray-200 cursor-pointer">Edit</span>
+                                    <span class="px-4 py-2 rounded-b-md hover:bg-gray-200 cursor-pointer">Delete</span>
+                                  </div>
+                                </div>`
+                                  : ""
+                              }
+                        </div>
+                  </div>
                     <p class="py-2 px-4">${post.postDesc}</p>
 
                     ${
