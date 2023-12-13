@@ -16,11 +16,16 @@
     <p id="loader">Laoding...</p>
 <main id="main" class="hidden">
 
-    <nav class="relative max-h-[60px] p-3 flex justify-between items-center shadow-md bg-white">
-        <h3 class="text-2xl font-semibold">Welcome, <span id="username-span" class="text-blue-500"></span> </h3>
+    <nav class="relative max-h-[60px] p-3 flex justify-end sm:justify-between items-center shadow-md bg-white">
+        <h3 class="text-2xl font-semibold hidden sm:block">Welcome, <span id="username-span" class="text-blue-500"></span> </h3>
 
         <!-- Account Icon -->
-        <div class="h-full" id="acc-details">
+        <div class="h-full flex items-center gap-5" id="acc-details">
+            
+            <a href="/application">
+                <img src="/assets/icons/homepage-icon.png" alt="home" class="w-[20px] cursor-pointer">
+            </a>
+
             <div
                 class="w-[40px] h-[40px] rounded-full bg-cover bg-center cursor-pointer" id="account-icon">
             </div>
